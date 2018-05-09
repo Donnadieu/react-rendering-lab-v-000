@@ -9,11 +9,11 @@ class Animation extends React.Component {
     };
   }
 
-  getNewCat = () => {
+  getNewGyph = () => {
     fetch("http://api.giphy.com/v1/gifs/random?rating=g&api_key=dc6zaTOxFJmzC")
       .then((res, err) => {
         if (err) {
-          console.log("Something went wrong with fetching your new cat!", err);
+          console.log("Something went wrong with fetching your new gyph!", err);
         } else {
           return res.json();
         }
@@ -24,6 +24,10 @@ class Animation extends React.Component {
         })
       );
   };
+
+  componentWillUpdate(){
+    return this.showLoadingBar()
+  }
 
   showLoadingBar = () => {
     const progressBar = document.getElementById("progress-bar");
@@ -36,7 +40,7 @@ class Animation extends React.Component {
       <div>
         <img src={this.state.url} height="100px" />
         <div>
-          <button onClick={this.getNewCat}>New random .gif!</button>
+          <button onClick={this.getNewGyph}>New random .gif!</button>
         </div>
       </div>
     );
